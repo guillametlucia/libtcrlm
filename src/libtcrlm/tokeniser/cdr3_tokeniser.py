@@ -42,7 +42,7 @@ class Cdr3Tokeniser(Tokeniser):
         if aa_sequence is None:
             return []
 
-        token_indices = [AminoAcidTokenIndex[aa] for aa in aa_sequence]
+        token_indices = [AminoAcidTokenIndex.from_aa_char(aa) for aa in aa_sequence]
         token_positions = [idx for idx, _ in enumerate(aa_sequence, start=1)]
         cdr_length = [len(aa_sequence) for _ in aa_sequence]
         compartment_index = [cdr_index for _ in aa_sequence]
@@ -87,7 +87,7 @@ class BetaCdr3Tokeniser(Tokeniser):
         if aa_sequence is None:
             return []
 
-        token_indices = [AminoAcidTokenIndex[aa] for aa in aa_sequence]
+        token_indices = [AminoAcidTokenIndex.from_aa_char(aa) for aa in aa_sequence]
         token_positions = [idx for idx, _ in enumerate(aa_sequence, start=1)]
         cdr_length = [len(aa_sequence) for _ in aa_sequence]
 
