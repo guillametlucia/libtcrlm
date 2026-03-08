@@ -61,7 +61,7 @@ class CdrTokeniser(Tokeniser):
         if aa_sequence is None:
             return []
 
-        token_indices = [AminoAcidTokenIndex[aa] for aa in aa_sequence]
+        token_indices = [AminoAcidTokenIndex.from_aa_char(aa) for aa in aa_sequence]
         token_positions = [idx for idx, _ in enumerate(aa_sequence, start=1)]
         cdr_length = [len(aa_sequence) for _ in aa_sequence]
         compartment_index = [cdr_index for _ in aa_sequence]
@@ -70,7 +70,11 @@ class CdrTokeniser(Tokeniser):
             token_indices, token_positions, cdr_length, compartment_index
         )
 
-        return list(iterator_over_token_vectors)
+        return [
+            vec
+            for vec in iterator_over_token_vectors
+            if vec[0] != AminoAcidTokenIndex.NULL
+        ]
 
 
 class AlphaCdrTokeniser(Tokeniser):
@@ -117,7 +121,7 @@ class AlphaCdrTokeniser(Tokeniser):
         if aa_sequence is None:
             return []
 
-        token_indices = [AminoAcidTokenIndex[aa] for aa in aa_sequence]
+        token_indices = [AminoAcidTokenIndex.from_aa_char(aa) for aa in aa_sequence]
         token_positions = [idx for idx, _ in enumerate(aa_sequence, start=1)]
         cdr_length = [len(aa_sequence) for _ in aa_sequence]
         compartment_index = [cdr_index for _ in aa_sequence]
@@ -126,7 +130,11 @@ class AlphaCdrTokeniser(Tokeniser):
             token_indices, token_positions, cdr_length, compartment_index
         )
 
-        return list(iterator_over_token_vectors)
+        return [
+            vec
+            for vec in iterator_over_token_vectors
+            if vec[0] != AminoAcidTokenIndex.NULL
+        ]
 
 
 class BetaCdrTokeniser(Tokeniser):
@@ -173,7 +181,7 @@ class BetaCdrTokeniser(Tokeniser):
         if aa_sequence is None:
             return []
 
-        token_indices = [AminoAcidTokenIndex[aa] for aa in aa_sequence]
+        token_indices = [AminoAcidTokenIndex.from_aa_char(aa) for aa in aa_sequence]
         token_positions = [idx for idx, _ in enumerate(aa_sequence, start=1)]
         cdr_length = [len(aa_sequence) for _ in aa_sequence]
         compartment_index = [cdr_index for _ in aa_sequence]
@@ -182,4 +190,8 @@ class BetaCdrTokeniser(Tokeniser):
             token_indices, token_positions, cdr_length, compartment_index
         )
 
-        return list(iterator_over_token_vectors)
+        return [
+            vec
+            for vec in iterator_over_token_vectors
+            if vec[0] != AminoAcidTokenIndex.NULL
+        ]
