@@ -70,7 +70,11 @@ class CdrTokeniser(Tokeniser):
             token_indices, token_positions, cdr_length, compartment_index
         )
 
-        return list(iterator_over_token_vectors)
+        return [
+            vec
+            for vec in iterator_over_token_vectors
+            if vec[0] != AminoAcidTokenIndex.NULL
+        ]
 
 
 class AlphaCdrTokeniser(Tokeniser):
@@ -126,7 +130,11 @@ class AlphaCdrTokeniser(Tokeniser):
             token_indices, token_positions, cdr_length, compartment_index
         )
 
-        return list(iterator_over_token_vectors)
+        return [
+            vec
+            for vec in iterator_over_token_vectors
+            if vec[0] != AminoAcidTokenIndex.NULL
+        ]
 
 
 class BetaCdrTokeniser(Tokeniser):
@@ -182,4 +190,8 @@ class BetaCdrTokeniser(Tokeniser):
             token_indices, token_positions, cdr_length, compartment_index
         )
 
-        return list(iterator_over_token_vectors)
+        return [
+            vec
+            for vec in iterator_over_token_vectors
+            if vec[0] != AminoAcidTokenIndex.NULL
+        ]
