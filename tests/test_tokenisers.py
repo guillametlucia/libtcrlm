@@ -2,6 +2,20 @@ import pytest
 import torch
 from libtcrlm import schema
 from libtcrlm.tokeniser import *
+from libtcrlm.tokeniser.token_indices import AminoAcidTokenIndex
+
+
+@pytest.mark.parametrize(
+    argnames=("key", "expected"),
+    argvalues=(
+        ("A", 3),
+        ("C", 4),
+        ("*", 0),
+    ),
+)
+def test_custom_indexer(key, expected):
+    val = AminoAcidTokenIndex.from_aa_char(key)
+    assert val == expected
 
 
 class TestBetaCdr3Tokeniser:
