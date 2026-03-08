@@ -32,6 +32,12 @@ class AminoAcidTokenIndex(IntEnum):
     W = 21
     Y = 22
 
+    @classmethod
+    def from_aa_char(cls, key: str) -> int:
+        if key == "*":
+            return cls.NULL
+        return cls[key]
+
 
 class Cdr3CompartmentIndex(IntEnum):
     NULL = DefaultTokenIndex.NULL
