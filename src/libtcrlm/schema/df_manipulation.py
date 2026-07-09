@@ -42,8 +42,8 @@ def _generate_tcr_pmhc_pair_from_row(row: Series) -> TcrPmhcPair:
 def _generate_tcr_from_row(row: Series) -> Tcr:
     trav = _get_value_if_not_na_else_none(row.TRAV)
     trbv = _get_value_if_not_na_else_none(row.TRBV)
-    traj = _get_value_if_not_na_else_none(row.TRAJ)
-    trbj =_get_value_if_not_na_else_none(row.TRBJ)
+    traj = _get_value_if_not_na_else_none(row.TRAJ) if "TRAJ" in row.index else None
+    trbj = _get_value_if_not_na_else_none(row.TRBJ) if "TRBJ" in row.index else None
     junction_a = _get_value_if_not_na_else_none(row.CDR3A)
     junction_b = _get_value_if_not_na_else_none(row.CDR3B)
 
